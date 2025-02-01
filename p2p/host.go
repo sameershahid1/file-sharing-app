@@ -13,12 +13,12 @@ type P2pHost struct {
 	Host    *host.Host
 }
 
-func NewP2pHost() (*P2pHost, error) {
+func NewP2pHost() (*P2pHost, string, error) {
 	handler := handler.NewHandler()
-	host, err := stream.NewStream(handler)
+	host, hostAddress, err := stream.NewStream(handler)
 	if err != nil {
 		fmt.Println(err)
-		return nil, err
+		return nil, "", err
 	}
 
 	newP2p2Host := &P2pHost{
@@ -26,7 +26,7 @@ func NewP2pHost() (*P2pHost, error) {
 		Host:    host,
 	}
 
-	return newP2p2Host, nil
+	return newP2p2Host, hostAddress, nil
 }
 
 func (s *P2pHost) Close() error {

@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	p2p_host "file-sharing/p2p"
+	"file-sharing/pkg/app"
 	"fmt"
 	"log"
 
@@ -15,10 +16,11 @@ import (
 var assets embed.FS
 
 func main() {
-	// Create an instance of the app structure
-	app := NewApp()
+	newHost, currentMultiAddress, err := p2p_host.NewP2pHost()
 
-	newHost, err := p2p_host.NewP2pHost()
+	// Create an instance of the app structure
+	app := app.NewApp(currentMultiAddress)
+
 	if err != nil {
 		log.Println(err)
 		return
@@ -26,14 +28,13 @@ func main() {
 
 	// Create application with options
 	err = wails.Run(&options.App{
-		Title:  "file-sharing",
+		Title:  "FileSharing",
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup:        app.startup,
+		OnStartup: app.Startup,
 		Bind: []interface{}{
 			app,
 		},

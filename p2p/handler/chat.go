@@ -7,7 +7,7 @@ import (
 	"github.com/libp2p/go-libp2p/core/network"
 )
 
-func HandlerSendMessage(stream network.Stream) {
+func (h *Handler) HandlerSendMessage(stream network.Stream) {
 	defer stream.Close()
 	fmt.Println("New stream from: ", stream.Conn().RemotePeer().String())
 	reader := bufio.NewReader(stream)
@@ -26,6 +26,3 @@ func HandlerSendMessage(stream network.Stream) {
 		fmt.Println("Message from peer: ", message)
 	}
 }
-
-
-

@@ -13,3 +13,6 @@ func (h *Handler) HandlerSendingFile(stream network.Stream) {
 func (h *Handler) HandlerRecievingFile(stream network.Stream) {
 	fmt.Println("recieve file")
 }
+
+
+

@@ -17,14 +17,13 @@ var assets embed.FS
 
 func main() {
 	newHost, currentMultiAddress, err := p2p_host.NewP2pHost()
-
-	// Create an instance of the app structure
-	app := app.NewApp(currentMultiAddress)
-
 	if err != nil {
 		log.Println(err)
 		return
 	}
+
+	// Create an instance of the app structure
+	app := app.NewApp(newHost.Host, currentMultiAddress)
 
 	// Create application with options
 	err = wails.Run(&options.App{

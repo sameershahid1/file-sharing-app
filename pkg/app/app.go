@@ -3,6 +3,9 @@ package app
 import (
 	"context"
 	"fmt"
+	"sync"
+
+	"github.com/libp2p/go-libp2p/core/host"
 )
 
 var CurrentMultiAddress string
@@ -11,12 +14,15 @@ var CurrentMultiAddress string
 type App struct {
 	ctx         context.Context
 	HostAddress string
+	Host        *host.Host
+	mu          sync.Mutex
 }
 
 // NewApp creates a new App application struct
-func NewApp(hostAddress string) *App {
+func NewApp(myHost *host.Host, hostAddress string) *App {
 	return &App{
 		HostAddress: hostAddress,
+		Host:        myHost,
 	}
 }
 

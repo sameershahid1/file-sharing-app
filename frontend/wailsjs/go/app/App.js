@@ -17,3 +17,7 @@ export function Greet(arg1) {
 export function Message(arg1, arg2) {
   return window['go']['app']['App']['Message'](arg1, arg2);
 }
+
+export function OpenFileDialogBox() {
+  return window['go']['app']['App']['OpenFileDialogBox']();
+}

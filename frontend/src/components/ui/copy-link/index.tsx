@@ -15,14 +15,10 @@ const CopyLink: FC<Props> = ({ link }) => {
             })
     };
 
+
     return (
-        <div className="flex items-center space-x-2 p-4 border rounded shadow-md">
-            <input
-                className="flex-grow p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                type="text"
-                value={link}
-                readOnly
-            />
+        <div className="flex-1 flex gap-4 items-center p-4 border rounded shadow-md">
+            <p>Application Link</p>
             <button
                 onClick={copyToClipboard}
                 className={`px-4 py-2 rounded transition-colors ${copied

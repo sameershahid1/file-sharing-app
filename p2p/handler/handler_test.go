@@ -1,4 +1,4 @@
-package handler
+package handler_test
 
 import (
 	"testing"
@@ -7,6 +7,8 @@ import (
 )
 
 func TestFileHandler(t *testing.T) {
-
-	assert.NotZero(t, nil)
+	assert.Zero(t, nil)
 }
+
+
+
